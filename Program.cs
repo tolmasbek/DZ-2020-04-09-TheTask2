@@ -1,4 +1,7 @@
 ﻿using System;
+using DZ_DocumentWorkerSpace;       /////
+using DZ_ProDocumentWorkerSpace;    //// Пространство имен
+using DZ_ExpertDocumentWorkerSpace; ///
 
 namespace DZ_2020_04_09
 {
@@ -35,6 +38,68 @@ namespace DZ_2020_04_09
                         базовому - DocumentWorker.
             */
 
+                System.Console.Write("/// DocumentWorker ///\n1 pro версия\n2 exp версия\n3 free версия\nВыберите одно из версий: ");
+            int choise = int.Parse(Console.ReadLine());
+            switch(choise)
+            {
+                case 1: 
+                {   
+                    string keyPro = "20200409";
+                        Console.Write("Введите ключ Pro версии: ");
+                    string pro = Console.ReadLine();
+                    if(pro == keyPro)
+                    {
+                        ProDocumentWorker docwPro = new ProDocumentWorker(); 
+                            System.Console.WriteLine();
+                            System.Console.WriteLine("Вы в версии Pro");
+                        docwPro.OpenDocument();
+                        docwPro.EditDocument();
+                    }
+                    else
+                    {
+                        DocumentWorker docwFree = new DocumentWorker();
+                            System.Console.WriteLine();
+                            System.Console.WriteLine("Вы в версии Free");
+                        docwFree.OpenDocument();
+                        docwFree.EditDocument();
+                        docwFree.SaveDocument();
+                    }
+                    break;
+                }
+                case 2: 
+                {
+                    string keyExp = "20200410";
+                        Console.Write("Введите ключ Exp версии: ");
+                    string pro = Console.ReadLine();
+                    if(pro == keyExp)
+                    {
+                        ExpertDocumentWorker docwPro = new ExpertDocumentWorker();
+                            System.Console.WriteLine();
+                            System.Console.WriteLine("Вы в версии Exp"); 
+                        docwPro.SaveDocument();
+                    }
+                    else
+                    {
+                        DocumentWorker docwFree = new DocumentWorker();
+                            System.Console.WriteLine();
+                            System.Console.WriteLine("Вы в версии Free");    
+                        docwFree.OpenDocument();
+                        docwFree.EditDocument();
+                        docwFree.SaveDocument();
+                    }
+                    break;
+                }
+                default:
+                {
+                        DocumentWorker docwFree = new DocumentWorker();
+                            System.Console.WriteLine();
+                            System.Console.WriteLine("Вы в версии Free");
+                        docwFree.OpenDocument();
+                        docwFree.EditDocument();
+                        docwFree.SaveDocument();
+                    break;
+                }   
+            }
             Console.ReadKey();
         }
     }
